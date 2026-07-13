@@ -5,7 +5,7 @@
 **Contribution Number:** 2  
 **Student:** Damnarcos Estevez 
 **Issue:**   ](https://github.com/npmx-dev/npmx.dev/issues/2648)
-**Status:** Phase I complete
+**Status:** Phase II complete
 
 ---
 
@@ -39,19 +39,18 @@ Anywhere where navigation would be used
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+install node.js and pnpm. 
+Problematic in windows due to antivirus, install pnpm through npm as the guide states.
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+Simply navigate the page, it is done with arrow keys
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
-- **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+https://github.com/elracing/npmx.dev/tree/fix-issue-2648
+
+running the app through pnpm run dev opens up the app, the issue wants to make navigation through j/k instead of keys. 
 
 ---
 
@@ -59,30 +58,29 @@ Anywhere where navigation would be used
 
 ### Analysis
 
-[Your analysis of the root cause - what's causing the issue?]
+Navigation is bound to arrow keys
 
 ### Proposed Solution
 
-[High-level description of your fix approach]
+change navigation bindings related to arrow keys to j/k
 
 ### Implementation Plan
 
 Using UMPIRE framework (adapted):
 
-**Understand:** [Restate the problem]
+**Understand:** 
+Navigation is bound to arrow keys, want to change to j/k
 
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match:** Binding is done through codebase, just change keys
 
-**Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+**Plan:** 
+modify key bindings to j/k while allowing certain requested features bound to arrow keys.
 
-**Implement:** [Link to your branch/commits as you work]
+**Implement:** https://github.com/elracing/npmx.dev/tree/fix-issue-2648
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Review:** Y
 
-**Evaluate:** [How will you verify it works?]
+**Evaluate:** Check that j/k can be used, while keeping arrow keys for other purposes
 
 ---
 
