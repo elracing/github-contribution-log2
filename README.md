@@ -5,7 +5,7 @@
 **Contribution Number:** 2  
 **Student:** Damnarcos Estevez 
 **Issue:**   ](https://github.com/npmx-dev/npmx.dev/issues/2648)
-**Status:** Phase II complete
+**Status:** Phase III in progress
 
 ---
 
@@ -85,6 +85,36 @@ modify key bindings to j/k while allowing certain requested features bound to ar
 ---
 
 ## Testing Strategy
+
+IN PROGRESS: currently evaluating test options and understanding overall the structure of the keyboard binds, usually I struggle with tests.
+
+The following high level plan seems to most of what is asked, this is what I have so far.
+
+## Plan: search result keyboard navigation
+
+Update the search results page so result navigation uses j/k instead of arrow keys, while preserving Enter-based activation and keeping editable fields unaffected. Add a focused regression test around the navigation mapping and verify it with the relevant unit test run.
+
+### What to change
+1. In app/pages/search.vue, replace the current result-navigation handling so:
+   - j moves to the next result
+   - k moves to the previous result
+   - Enter still activates the focused result
+   - arrow keys no longer hijack this flow for page-level result navigation
+
+2. Keep the behavior safe for editable fields by reusing the existing guard logic in app/utils/input.ts, so typing in an input, textarea, or contenteditable element is not disrupted.
+
+3. Add a regression test around the new keyboard mapping in test/unit/app/utils/search.spec.ts (or a nearby app-utils test file) so this stays covered.
+
+### Scope boundaries
+- This is scoped to the search results experience.
+- Do not change arrow-key behavior in accessibility-critical controls such as app/components/VersionSelector.vue or app/components/UserCombobox.vue, since those are intentionally keyboard-driven UI patterns.
+
+### Verification
+- Run the targeted unit test for the new keyboard mapping.
+- Manually verify on the search page that:
+  - j/k move between results
+  - arrow keys scroll the page normally
+  - Enter still opens/selects the focused item
 
 ### Unit Tests
 
